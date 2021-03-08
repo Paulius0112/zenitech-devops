@@ -1,0 +1,4 @@
+- name: Install general package
+  apt:
+    pkg:
+    - software-properties-common

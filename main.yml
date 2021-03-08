@@ -1,0 +1,13 @@
+- name: Initial setup
+  become: yes
+  become_user: root
+  hosts: all
+  roles:
+    - general
+
+- name: Create storage bucket
+  become: yes
+  become_user: root
+  hosts: all
+  roles:
+    - create_bucket
