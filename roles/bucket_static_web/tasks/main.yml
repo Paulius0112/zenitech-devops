@@ -1,7 +1,7 @@
 - name: Upload website content
   community.aws.s3_sync:
-    aws_access_key:
-    aws_secret_key: 
+    aws_access_key: AKIA3HTXCJQA5ALLRFOZ
+    aws_secret_key: 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
     bucket: zenitech-paulgasp
     object: index.html
     dest: "./"
@@ -9,7 +9,9 @@
 
 - name: Configure an s3 bucket as a website with index and error pages
   community.aws.s3_website:
+    aws_access_key: AKIA3HTXCJQA5ALLRFOZ
+    aws_secret_key: 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
     name: zentech-paulgasp
     suffix: index.html
-    error_key: errors/404.html
+    #    error_key: errors/404.html
     state: present
