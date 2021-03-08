@@ -1,21 +1,4 @@
-- name: Initial setup
-  become: yes
-  become_user: root
-  hosts: all
-  roles:
-    - general
-
-- name: Create storage bucket
-  become: yes
-  become_user: root
-  hosts: all
-  vars:
-  roles:
-    - create_bucket
-
-- name: Upload and publish static content
-  become: yes
-  become_user: root
-  hosts: all
-  roles:
-    - bucket_static_web
+AWS_ACCESS_KEY: AKIA3HTXCJQA5ALLRFOZ 
+AWS_SECRET_KEY: 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
+BUCKET_NAME: "zenitech-paulgasp"
+AWS_REGION: "us-east-1e"

@@ -12,9 +12,9 @@ In this project, we will be using Ansible to automate the deployment AWS S3 stor
 Tutorial on how to launch AWS E2 instance can be found [here](https://docs.aws.amazon.com/quickstarts/latest/vmlaunch/step-1-launch-instance.html)
 
 For this tutorial, the information of created E2 instance can be found below
-| **Instance type** |  Center  | Right |
-|:-----|:--------:|------:|
-| t2.small   | **bold** | $1600 |
+| **Instance type** |  **vCPUs**  | **Memory (GiB)** | **Instance Storage (GB)** | **Network Performance** |
+|:-----|:--------:|------:|------:|------:|
+| t2.small   | 1 | 2 | EBS only | Low to Moderate |
 
  
 ### Ansible install on host machine

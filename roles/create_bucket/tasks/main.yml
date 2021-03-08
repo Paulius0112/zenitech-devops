@@ -1,3 +1,4 @@
+- include_vars: ../../../secrets.yaml
 - name: Create S3 bucket
   amazon.aws.s3_bucket:
      name: "{{ BUCKET_NAME }}"
@@ -5,13 +6,12 @@
      aws_secret_key: "{{ AWS_SECRET_KEY }}"
      state: present
      policy: "{{ lookup('file', 'policy.json') }}"
+     region: "{{ AWS_REGION }}"
      versioning: no
      tags:
        name: "{{ BUCKET_NAME }}"
        type: "E2"
-     vars_files:
-       - vars/main.yml
-   register: s3_url
+  register: s3_url
 
 - name: Display s3 url
   debug: var=s3_url.stdout
