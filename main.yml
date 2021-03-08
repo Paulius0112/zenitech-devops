@@ -9,5 +9,13 @@
   become: yes
   become_user: root
   hosts: all
+  vars:
   roles:
     - create_bucket
+
+- name: Upload and publish static content
+  become: yes
+  become_user: root
+  hosts: all
+  roles:
+    - bucket_static_web

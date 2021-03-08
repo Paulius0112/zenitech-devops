@@ -1,17 +1,29 @@
+- name: see pwd
+  shell: pwd
+  register: output
+- debug: var=output.stdout
+
+- name: Upload files to host
+  copy:
+   src: /Users/pauliusgasp/desktop/zenitech/static-pages
+   dest: /home/ubuntu/
+
 - name: Upload website content
   community.aws.s3_sync:
-    aws_access_key: AKIA3HTXCJQA5ALLRFOZ
-    aws_secret_key: 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
-    bucket: zenitech-paulgasp
-    object: index.html
-    dest: "./"
-    mode: get
+    aws_access_key: "{{ AWS_ACCESS_KEY }}"
+    aws_secret_key: "{{ AWS_SECRET_KEY }}"
+    bucket: "{{ BUCKET_NAME }}"
+    file_root: /home/ubuntu/static-pages/
+    vars_files:
+      - vars/main.yml
 
 - name: Configure an s3 bucket as a website with index and error pages
   community.aws.s3_website:
-    aws_access_key: AKIA3HTXCJQA5ALLRFOZ
-    aws_secret_key: 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
-    name: zentech-paulgasp
+    aws_access_key: "{{ AWS_ACCESS_KEY }}"
+    aws_secret_key: "{{ AWS_SECRET_KEY }}"
+    name: "{{ BUCKET_NAME }}"
     suffix: index.html
-    #    error_key: errors/404.html
+    error_key: error.html
     state: present
+    vars_files:
+      - vars/main.yml
