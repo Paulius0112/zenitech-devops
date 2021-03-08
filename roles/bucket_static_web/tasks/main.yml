@@ -1,0 +1,15 @@
+- name: Upload website content
+  community.aws.s3_sync:
+    aws_access_key:
+    aws_secret_key: 
+    bucket: zenitech-paulgasp
+    object: index.html
+    dest: "./"
+    mode: get
+
+- name: Configure an s3 bucket as a website with index and error pages
+  community.aws.s3_website:
+    name: zentech-paulgasp
+    suffix: index.html
+    error_key: errors/404.html
+    state: present

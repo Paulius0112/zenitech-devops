@@ -1,8 +1,12 @@
 - name: Create S3 bucket
   amazon.aws.s3_bucket:
      name: zenitech-paulgasp
+     aws_access_key: AKIA3HTXCJQA5ALLRFOZ
+     aws_secret_key: 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
      state: present
      policy: "{{ lookup('file', 'policy.json') }}"
-     public_access:
-         BlockPublicAcls:false
+     versioning: no
+     tags:
+       name: zenitech-paulgasp
+       type: test
 
