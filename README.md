@@ -45,6 +45,25 @@ AWS_REGION: us-east-2
 LOCAL_FILES_PATH: CHANGEME
 ```
 
+After the bucket name was specified, chnage the value in `policy.json` file accordingly.
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::<BUCKET NAME>/*"
+            ]
+        }
+    ]
+}
+```
 ## Run ansible playbook
 The ansible playbook can be executed with the following command:
 
