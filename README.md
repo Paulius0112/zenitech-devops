@@ -36,12 +36,13 @@ You can test your connection using the following command
 ```ansible -i hosts/inventory.ini vm -m ping```
 
 ### Define variables
-In the `vars` folder, `main.yml` file should be modified with required values. For demonstration purposes, the information is provided of an already created IAM user.
+The variables in `secrets.yaml` file must be modified with required values. For demonstration purposes, the information is provided of an already created IAM user.
 ```
 AWS_ACCESS_KEY: CHANGEME
 AWS_SECRET_KEY: CHANGEME
 BUCKET_NAME: CHANGEME
-AWS_REGION: eu-west-1
+AWS_REGION: us-east-2
+LOCAL_FILES_PATH: CHANGEME
 ```
 
 ## Run ansible playbook
