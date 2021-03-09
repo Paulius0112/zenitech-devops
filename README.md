@@ -16,7 +16,9 @@ For this tutorial, the information of created E2 instance can be found below
 |:-----|:--------:|------:|------:|------:|
 | t2.small   | 1 | 2 | EBS only | Low to Moderate |
 
- 
+After the instalation, the E2 console should look something like this
+![E2](images/E2.png)
+
 ### Ansible install on host machine
 Tutorial on how to install Ansible can be found [here](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
@@ -25,17 +27,31 @@ Tutorial on how to install Ansible can be found [here](https://docs.ansible.com/
 For Ansible playbook to execute successfully, `inventory.ini` in `hosts` directory should modified. For demonstratino purposes, the information is provided of already create AWS E2 instance.
 
 ```[vm]
-18.217.236.79 ansible_connection=ssh ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/aws-private.pem```
+<IP address> ansible_connection=ssh ansible_user=ubuntu ansible_ssh_private_key_file=<path to AWS private key>```
+
+You can test your connection using the following command
+```ansible -i hosts/inventory.ini vm -m ping```
 
 ### Define variables
 In the `vars` folder, `main.yml` file should be modified with required values. For demonstration purposes, the information is provided of an already created IAM user.
-```AWS_ACCESS_KEY: AKIA3HTXCJQA5ALLRFOZ 
-AWS_SECRET_KEY: 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
-BUCKET_NAME: zenitech-paulgasp
+```
+AWS_ACCESS_KEY: CHANGEME
+AWS_SECRET_KEY: CHANGEME
+BUCKET_NAME: CHANGEME
 AWS_REGION: eu-west-1```
 
 ## Run ansible playbook
 The ansible playbook can be executed with the following command
 `ansible-playbook -i hosts/inventory.ini main.yml -vvv -e 'ansible_python_interpreter=/usr/bin/python3`
 
-## Congratulations! Your E2 instance is now taking an `index.html` and `error.html` files from created S3 bucket and serving a static content on the web. You can see that by visiting the [link]()
+After the command executed successfully, inside S3 console, a new storage bucket should have been created.
+![bucket](images/bucket.png)
+
+Inside the storage bucket, two `html` files should have been uploaded
+![objects](images/objects.png)
+
+**Note!** Check that ansible playbook surely allowed public access to the contents of the S3 storage bucket.
+![public-access](images/public-access.png)
+
+
+## Congratulations! Your E2 instance is now taking an `index.html` and `error.html` files from created S3 bucket and serving a static content on the web. You can see that by visiting the [link](http://zenitech-paulgasp-storage.s3-website.us-east-2.amazonaws.com/)

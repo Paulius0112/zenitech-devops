@@ -9,7 +9,7 @@
                 "s3:GetObject"
             ],
             "Resource": [
-                "arn:aws:s3:::zenitech-paulgasp/*"
+                "arn:aws:s3:::zenitech-paulgasp-storage/*"
             ]
         }
     ]

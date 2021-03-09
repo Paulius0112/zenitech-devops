@@ -1,11 +1,7 @@
-- name: see pwd
-  shell: pwd
-  register: output
-- debug: var=output.stdout
-
+- include_vars: ../../../secrets.yaml
 - name: Upload files to host
   copy:
-   src: /Users/pauliusgasp/desktop/zenitech/static-pages
+   src: "{{ LOCAL_FILES_PATH }}"
    dest: /home/ubuntu/
 
 - name: Upload website content
@@ -14,8 +10,6 @@
     aws_secret_key: "{{ AWS_SECRET_KEY }}"
     bucket: "{{ BUCKET_NAME }}"
     file_root: /home/ubuntu/static-pages/
-    vars_files:
-      - vars/main.yml
 
 - name: Configure an s3 bucket as a website with index and error pages
   community.aws.s3_website:
@@ -25,5 +19,3 @@
     suffix: index.html
     error_key: error.html
     state: present
-    vars_files:
-      - vars/main.yml
